@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --breu:#0B0C0E;
+  --osso:#EDEBE6;
+  --cinza:#6E7076;
+  --linha:rgba(237,235,230,.18);
+  --maxw:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--breu);
+  color:var(--osso);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--osso);color:var(--breu)}
+
+/* ---------- idioma ---------- */
+[data-lang="pt"] .en{display:none}
+[data-lang="en"] .pt{display:none}
+
+/* ---------- traço interrompido (do E do logo) ---------- */
+.traco{
+  border:none;height:1px;background:none;
+  border-top:1px dashed var(--linha);
+  margin:0 auto;max-width:var(--maxw);
+}
+
+/* ---------- chrome / mono ---------- */
+.mono{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cinza);
+}
+
+/* ---------- topo ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;
+  padding:1.1rem 1.5rem;
+  background:linear-gradient(to bottom, rgba(11,12,14,.94), rgba(11,12,14,0));
+}
+header .marca img{height:15px;display:block;opacity:.9}
+nav{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+nav > a{
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cinza);text-decoration:none;transition:color .3s;
+}
+nav > a:hover,nav > a:focus-visible,nav > a.ativo{color:var(--osso)}
+
+/* ---------- dropdown "Trabalhos" ---------- */
+.dropdown{position:relative}
+.dropdown > button{
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cinza);background:none;border:none;cursor:pointer;
+  padding:.3rem 0;transition:color .3s;
+  display:flex;align-items:center;gap:.4rem;
+}
+.dropdown > button::after{
+  content:'';width:5px;height:5px;
+  border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+  transform:rotate(45deg);margin-top:-3px;transition:transform .25s;
+}
+.dropdown:hover > button,.dropdown:focus-within > button,.dropdown.ativo > button{color:var(--osso)}
+.dropdown:hover > button::after,.dropdown:focus-within > button::after{transform:rotate(225deg);margin-top:3px}
+.submenu{
+  position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  padding-top:.9rem;
+  display:flex;flex-direction:column;gap:.1rem;
+  min-width:220px;
+  opacity:0;visibility:hidden;transition:opacity .25s ease;
+  pointer-events:none;
+}
+.dropdown:hover .submenu,.dropdown:focus-within .submenu{
+  opacity:1;visibility:visible;pointer-events:auto;
+}
+.submenu a{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cinza);text-decoration:none;
+  background:var(--breu);border:1px solid var(--linha);border-top:none;
+  padding:.7rem .9rem;text-align:center;transition:color .3s,background .3s;
+}
+.submenu a:first-child{border-top:1px solid var(--linha)}
+.submenu a:hover,.submenu a:focus-visible,.submenu a.ativo{color:var(--osso);background:#1a1b1e}
+
+.lang{
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;
+  background:none;border:1px solid var(--linha);color:var(--cinza);
+  padding:.35rem .7rem;cursor:pointer;transition:color .3s,border-color .3s;
+}
+.lang:hover,.lang:focus-visible{color:var(--osso);border-color:var(--osso)}
+
+/* ---------- hero (index) ---------- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2.2rem;
+  padding:2rem;text-align:center;position:relative;
+}
+.hero img{width:min(520px,72vw);opacity:0;animation:acender 2.4s ease .3s forwards}
+@keyframes acender{to{opacity:1}}
+.hero p{
+  font-size:.95rem;color:var(--cinza);letter-spacing:.06em;
+  opacity:0;animation:acender 2.4s ease 1.1s forwards;
+}
+.hero .scroll-cta{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  opacity:0;animation:acender 2.4s ease 1.7s forwards;
+}
+.hero .scroll-cta a{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cinza);text-decoration:none;
+}
+.hero .scroll-cta a:hover{color:var(--osso)}
+@media (prefers-reduced-motion:reduce){
+  .hero img,.hero p,.hero .scroll-cta{animation:none;opacity:1}
+}
+
+/* ---------- cabeçalho de página interna ---------- */
+.pagina-topo{
+  max-width:var(--maxw);margin:0 auto;padding:9.5rem 1.5rem 3rem;
+}
+.pagina-topo .mono{margin-bottom:1.2rem}
+.pagina-topo h1{
+  font-weight:200;font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:.03em;
+}
+.pagina-topo h1 .alt{
+  display:block;font-size:.4em;color:var(--cinza);font-style:italic;
+  font-weight:300;letter-spacing:.06em;margin-top:.3rem;
+}
+
+/* ---------- seções ---------- */
+section{max-width:var(--maxw);margin:0 auto;padding:4rem 1.5rem 6rem}
+.rotulo{display:block;margin-bottom:3.5rem}
+
+/* ---------- lista de filmes ---------- */
+.filme{padding:1.6rem 0;border-top:1px dashed var(--linha)}
+.filme:last-child{border-bottom:1px dashed var(--linha)}
+.filme-linha{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+}
+.filme h3{
+  font-weight:200;font-size:clamp(1.7rem,4.5vw,3rem);
+  letter-spacing:.04em;line-height:1.15;
+}
+.filme h3 .alt{
+  display:block;font-size:.42em;color:var(--cinza);
+  font-weight:300;font-style:italic;letter-spacing:.06em;
+}
+.filme .meta{white-space:nowrap}
+.filme .desc{
+  max-width:56ch;margin-top:.7rem;color:var(--cinza);font-size:.95rem;
+}
+.player,.still{
+  margin-top:1.8rem;position:relative;width:100%;
+  aspect-ratio:16/9;background:#000;
+}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.still{
+  display:flex;align-items:center;justify-content:center;
+  border:1px dashed var(--linha);
+}
+.still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- sobre ---------- */
+.sobre p{max-width:62ch;font-size:1.05rem;margin-bottom:1.4rem}
+.bios{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:3rem;margin-top:3.5rem}
+.bio h4{font-weight:400;font-size:1.05rem;letter-spacing:.05em;margin-bottom:.5rem}
+.bio .cargo{display:block;margin-bottom:.9rem}
+.bio p{color:var(--cinza);font-size:.92rem}
+
+/* ---------- contato ---------- */
+.contato-corpo{max-width:60ch}
+.contato-corpo p{font-size:1.05rem;margin-bottom:2rem;color:var(--cinza)}
+.contato-item{padding:1.2rem 0;border-top:1px dashed var(--linha)}
+.contato-item:last-child{border-bottom:1px dashed var(--linha)}
+.contato-item a{
+  font-size:1.3rem;font-weight:200;color:var(--osso);text-decoration:none;
+}
+.contato-item a:hover{border-bottom:1px dashed var(--osso)}
+
+/* ---------- rodapé ---------- */
+footer{
+  max-width:var(--maxw);margin:0 auto;padding:5rem 1.5rem 3rem;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:2rem;flex-wrap:wrap;
+}
+footer a{color:var(--osso);text-decoration:none;border-bottom:1px dashed var(--linha)}
+footer a:hover{border-bottom-color:var(--osso)}
+footer img{height:13px;opacity:.5}
+
+/* ---------- mobile ---------- */
+@media (max-width:640px){
+  nav{gap:1rem}
+  .submenu{left:auto;right:0;transform:none;min-width:190px}
+}
