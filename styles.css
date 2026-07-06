@@ -68,8 +68,8 @@ nav > a:hover,nav > a:focus-visible,nav > a.ativo{color:var(--osso)}
   border-right:1px solid currentColor;border-bottom:1px solid currentColor;
   transform:rotate(45deg);margin-top:-3px;transition:transform .25s;
 }
-.dropdown:hover > button,.dropdown:focus-within > button,.dropdown.ativo > button{color:var(--osso)}
-.dropdown:hover > button::after,.dropdown:focus-within > button::after{transform:rotate(225deg);margin-top:3px}
+.dropdown:hover > button,.dropdown:focus-within > button,.dropdown.ativo > button,.dropdown.open > button{color:var(--osso)}
+.dropdown:hover > button::after,.dropdown:focus-within > button::after,.dropdown.open > button::after{transform:rotate(225deg);margin-top:3px}
 .submenu{
   position:absolute;top:100%;left:50%;transform:translateX(-50%);
   padding-top:.9rem;
@@ -78,7 +78,7 @@ nav > a:hover,nav > a:focus-visible,nav > a.ativo{color:var(--osso)}
   opacity:0;visibility:hidden;transition:opacity .25s ease;
   pointer-events:none;
 }
-.dropdown:hover .submenu,.dropdown:focus-within .submenu{
+.dropdown:hover .submenu,.dropdown:focus-within .submenu,.dropdown.open .submenu{
   opacity:1;visibility:visible;pointer-events:auto;
 }
 .submenu a{
